@@ -1,7 +1,7 @@
-import sensorImg from '../assets/images/features/sensor.svg'
-import ledImg from '../assets/images/features/led.svg'
-import bluetoothImg from '../assets/images/features/bluetooth.svg'
-import batteryImg from '../assets/images/features/battery.svg'
+import sensorImg from '../assets/images/features/sensor.webp'
+import ledImg from '../assets/images/features/led.webp'
+import bluetoothImg from '../assets/images/features/bluetooth.webp'
+import batteryImg from '../assets/images/features/battery.webp'
 
 export interface Feature {
   icon: string

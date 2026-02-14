@@ -4,8 +4,8 @@ import OptimizedImage from '../ui/OptimizedImage'
 import { cn } from '../../utils/cn'
 import styles from './BrandHighlights.module.css'
 
-import brandTechImg from '../../assets/images/brand/brand-tech.svg'
-import brandDesignImg from '../../assets/images/brand/brand-design.svg'
+import brandTechImg from '../../assets/images/brand/brand-tech.webp'
+import brandDesignImg from '../../assets/images/brand/brand-design.webp'
 
 const highlights = [
   {

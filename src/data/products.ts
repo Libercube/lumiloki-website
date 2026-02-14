@@ -1,11 +1,11 @@
 import type { Product } from '../types/product'
 
-import lumiProImg from '../assets/images/products/lumi-pro.svg'
-import lumiLiteImg from '../assets/images/products/lumi-lite.svg'
-import lumiSpeedImg from '../assets/images/products/lumi-speed.svg'
-import lumiMiniImg from '../assets/images/products/lumi-mini.svg'
-import lumiXImg from '../assets/images/products/lumi-x.svg'
-import lumiNeoImg from '../assets/images/products/lumi-neo.svg'
+import lumiProImg from '../assets/images/products/lumi-pro.webp'
+import lumiLiteImg from '../assets/images/products/lumi-lite.webp'
+import lumiSpeedImg from '../assets/images/products/lumi-speed.webp'
+import lumiMiniImg from '../assets/images/products/lumi-mini.webp'
+import lumiXImg from '../assets/images/products/lumi-x.webp'
+import lumiNeoImg from '../assets/images/products/lumi-neo.webp'
 
 export const products: Product[] = [
   {

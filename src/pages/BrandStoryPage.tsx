@@ -3,7 +3,14 @@ import SectionHeading from '../components/ui/SectionHeading'
 import GlowCard from '../components/ui/GlowCard'
 import ScrollReveal from '../components/ui/ScrollReveal'
 import GlowDivider from '../components/ui/GlowDivider'
+import OptimizedImage from '../components/ui/OptimizedImage'
 import Timeline from '../components/sections/Timeline'
+import brandOriginImg from '../assets/images/brand/brand-origin.webp'
+import brandVisionImg from '../assets/images/brand/brand-vision.webp'
+import valueInnovationImg from '../assets/images/brand/value-innovation.webp'
+import valueInclusionImg from '../assets/images/brand/value-inclusion.webp'
+import valueFunImg from '../assets/images/brand/value-fun.webp'
+import brandBg from '../assets/images/backgrounds/brand-bg.webp'
 import styles from './BrandStoryPage.module.css'
 
 const brandValues = [
@@ -12,18 +19,21 @@ const brandValues = [
     title: '创新',
     description: '不断突破技术边界，将前沿科技融入日常玩具，重新定义魔方的可能性。',
     color: 'var(--color-primary)',
+    image: valueInnovationImg,
   },
   {
     icon: '🤗',
     title: '包容',
     description: '魔方属于每一个人。无论年龄、水平，Lumiloki 都让你找到属于自己的乐趣。',
     color: 'var(--color-secondary)',
+    image: valueInclusionImg,
   },
   {
     icon: '🎉',
     title: '乐趣',
     description: '产品设计始终以乐趣为核心，让科技不再冰冷，让每一次旋转都充满惊喜。',
     color: 'var(--color-accent)',
+    image: valueFunImg,
   },
 ]
 
@@ -31,6 +41,9 @@ export default function BrandStoryPage() {
   return (
     <div className={styles.page}>
       <div className={styles.hero}>
+        <div className={styles.heroBg}>
+          <img src={brandBg} alt="" className={styles.heroBgImg} />
+        </div>
         <div>
           <motion.h1
             className={styles.heroTitle}
@@ -54,6 +67,14 @@ export default function BrandStoryPage() {
       <div className="container">
         <ScrollReveal>
           <div className={styles.origin}>
+            <div className={styles.originImage}>
+              <OptimizedImage
+                src={brandOriginImg}
+                alt="Lumiloki 品牌起源"
+                aspectRatio="16/9"
+                objectFit="cover"
+              />
+            </div>
             <div className={styles.originContent}>
               <SectionHeading
                 label="品牌起源"
@@ -82,6 +103,14 @@ export default function BrandStoryPage() {
             {brandValues.map((value, index) => (
               <ScrollReveal key={value.title} delay={index * 0.15}>
                 <GlowCard className={styles.valueCard}>
+                  <div className={styles.valueImage}>
+                    <OptimizedImage
+                      src={value.image}
+                      alt={value.title}
+                      aspectRatio="16/10"
+                      objectFit="cover"
+                    />
+                  </div>
                   <div className={styles.valueIcon}>{value.icon}</div>
                   <h3 className={styles.valueTitle} style={{ color: value.color }}>
                     {value.title}
@@ -96,6 +125,14 @@ export default function BrandStoryPage() {
         <GlowDivider />
 
         <div className={styles.timelineSection}>
+          <div className={styles.timelineHeader}>
+            <OptimizedImage
+              src={brandVisionImg}
+              alt="Lumiloki 品牌愿景"
+              aspectRatio="21/9"
+              objectFit="cover"
+            />
+          </div>
           <SectionHeading
             label="品牌历程"
             title="成长之路"

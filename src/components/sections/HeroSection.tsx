@@ -4,7 +4,8 @@ import OptimizedImage from '../ui/OptimizedImage'
 import ParticleField from '../effects/ParticleField'
 import TypewriterText from '../effects/TypewriterText'
 import { useScrollPosition } from '../../hooks/useScrollPosition'
-import heroProduct from '../../assets/images/products/lumi-pro.svg'
+import heroProduct from '../../assets/images/products/lumi-pro.webp'
+import heroBg from '../../assets/images/backgrounds/hero-bg.webp'
 import styles from './HeroSection.module.css'
 
 export default function HeroSection() {
@@ -12,6 +13,9 @@ export default function HeroSection() {
 
   return (
     <section className={styles.hero}>
+      <div className={styles.heroBg}>
+        <img src={heroBg} alt="" className={styles.heroBgImg} />
+      </div>
       <div className={styles.noiseOverlay} />
       <ParticleField particleCount={60} />
 
@@ -31,8 +35,10 @@ export default function HeroSection() {
             alt="Lumi Pro"
             className={styles.heroProductImg}
             fallbackEmoji="🟦"
-            width={240}
-            height={240}
+            width={400}
+            height={400}
+            priority
+            objectFit="contain"
           />
         </motion.div>
 

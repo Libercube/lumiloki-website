@@ -5,7 +5,7 @@ import GlowCard from '../components/ui/GlowCard'
 import ProductCard from '../components/ui/ProductCard'
 import SectionHeading from '../components/ui/SectionHeading'
 import ScrollReveal from '../components/ui/ScrollReveal'
-import OptimizedImage from '../components/ui/OptimizedImage'
+import Product3DShowcase from '../components/ui/Product3DShowcase'
 import { products } from '../data/products'
 import { cn } from '../utils/cn'
 import styles from './ProductDetailPage.module.css'
@@ -34,13 +34,10 @@ export default function ProductDetailPage() {
           transition={{ duration: 0.6 }}
         >
           {product.image ? (
-            <OptimizedImage
-              src={product.image}
+            <Product3DShowcase
+              image={product.image}
               alt={product.name}
-              className={styles.productImg}
-              fallbackEmoji={product.emoji}
-              width={400}
-              height={400}
+              emoji={product.emoji}
             />
           ) : (
             <span className={styles.productEmoji}>{product.emoji}</span>

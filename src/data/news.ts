@@ -1,10 +1,10 @@
 import type { NewsArticle } from '../types/news'
 
-import newsLaunchImg from '../assets/images/news/news-launch.svg'
-import newsCompetitionImg from '../assets/images/news/news-competition.svg'
-import newsTechImg from '../assets/images/news/news-tech.svg'
-import newsCollabImg from '../assets/images/news/news-collab.svg'
-import newsAppImg from '../assets/images/news/news-app.svg'
+import newsLaunchImg from '../assets/images/news/news-launch.webp'
+import newsCompetitionImg from '../assets/images/news/news-competition.webp'
+import newsTechImg from '../assets/images/news/news-tech.webp'
+import newsCollabImg from '../assets/images/news/news-collab.webp'
+import newsAppImg from '../assets/images/news/news-app.webp'
 
 export const newsArticles: NewsArticle[] = [
   {
