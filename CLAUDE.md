@@ -9,7 +9,7 @@ Lumiloki 发光智能魔方品牌官网，基于 React 18 + Vite 5 + TypeScript 
 - **路由**: React Router DOM v7（HashRouter），所有页面组件通过 `React.lazy` 懒加载
 - **动画**: motion@12 + CSS keyframes（18+ 预定义动画）
 - **样式**: CSS Modules + CSS 变量（100+ 变量定义在 `variables.css`）
-- **工具**: clsx（类名拼接）、sharp（图片压缩生成 WebP）
+- **工具**: clsx（类名拼接）、sharp（图片压缩生成 WebP）、Playwright（headless 截图调试）
 - **AI 图片生成**: 即梦 API（火山引擎），通过 MCP 集成（`jimeng-mcp-v4@4.0.0`）
 - **字体**: Nunito（展示）+ Noto Sans SC（正文），Google Fonts CDN 加载
 - **测试**: Vitest + @testing-library/react + @testing-library/jest-dom
@@ -143,6 +143,25 @@ src/
   4. 运行 `git status` 检查是否有未提交的改动
   5. 确认最近一次构建状态（通过/失败），如不确定则重新运行验证
 
+## 视觉截图调试流程
+通过 Playwright（headless Chromium）对本地开发页面自动截图，实现无 GUI 环境下的视觉调试：
+1. **启动开发服务器** — `npm run dev`（确保服务器在后台运行）
+2. **截图** — `npx playwright screenshot --browser chromium http://localhost:5173/lumiloki-website/ /tmp/screenshot.png`
+3. **查看分析** — 用 Read 工具读取截图图片，分析页面渲染效果
+4. **修改验证** — 根据截图反馈修改代码，重新截图对比确认
+
+### 截图参数说明
+- 全页截图（含滚动区域）：追加 `--full-page` 参数
+- 指定视口尺寸：`--viewport-size=1280,720`
+- 移动端模拟：`--viewport-size=375,812`
+- 子路由页面：调整 URL hash，如 `http://localhost:5173/lumiloki-website/#/products`
+
+### 使用时机
+- 样式调整后需确认视觉效果
+- 响应式布局验证（桌面端 / 移动端）
+- 新组件开发完成后的渲染检查
+- 排查布局异常或样式错乱问题
+
 ## 即梦 AI 图片生成流程
 当需要为页面生成图片素材时，通过 MCP 调用即梦 API（`jimeng-mcp-v4@4.0.0`）：
 1. **分析需求** — 确定图片用途、尺寸、风格（需与网站整体视觉风格一致）
@@ -158,6 +177,7 @@ src/
 - `npm run test` — 运行单元测试（Vitest，单次运行）
 - `npm run test:watch` — 运行单元测试（Vitest，监听模式）
 - `npm run preview` — 预览生产构建
+- `npx playwright screenshot --browser chromium <url> <output.png>` — 页面截图（headless）
 
 ## 部署
 - GitHub Actions 自动部署（push to main → build → deploy to GitHub Pages）
