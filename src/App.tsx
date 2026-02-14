@@ -4,7 +4,6 @@ import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ScrollToTop from './components/ui/ScrollToTop'
 import ScrollProgressBar from './components/ui/ScrollProgressBar'
-import CursorGlow from './components/effects/CursorGlow'
 
 export default function App() {
   const location = useLocation()
@@ -13,7 +12,6 @@ export default function App() {
     <div className="app">
       <ScrollToTop />
       <ScrollProgressBar />
-      <CursorGlow />
       <Navbar />
       <main>
         <AnimatePresence mode="wait">

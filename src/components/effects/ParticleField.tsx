@@ -5,28 +5,34 @@ interface ParticleFieldProps {
   particleCount?: number
   colors?: string[]
   speed?: number
-  connectDistance?: number
 }
 
-interface Particle {
+interface Bubble {
   x: number
   y: number
   vx: number
   vy: number
   radius: number
   color: string
+  shape: 'circle' | 'roundedRect'
+  rotation: number
+  rotationSpeed: number
 }
 
 export default function ParticleField({
   particleCount = 50,
-  colors = ['rgba(0, 240, 255, 0.6)', 'rgba(178, 75, 243, 0.5)', 'rgba(255, 45, 120, 0.4)'],
-  speed = 0.3,
-  connectDistance = 120,
+  colors = [
+    'rgba(255, 107, 107, 0.15)',
+    'rgba(78, 205, 196, 0.15)',
+    'rgba(255, 230, 109, 0.15)',
+    'rgba(167, 139, 250, 0.15)',
+    'rgba(96, 165, 250, 0.15)',
+  ],
+  speed = 0.2,
 }: ParticleFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animRef = useRef<number>(0)
-  const particlesRef = useRef<Particle[]>([])
-  const mouseRef = useRef({ x: -1000, y: -1000 })
+  const bubblesRef = useRef<Bubble[]>([])
 
   const prefersReducedMotion = useRef(
     typeof window !== 'undefined'
@@ -38,20 +44,23 @@ export default function ParticleField({
     typeof window !== 'undefined' ? window.innerWidth < 768 : false
   )
 
-  const initParticles = useCallback((width: number, height: number) => {
+  const initBubbles = useCallback((width: number, height: number) => {
     const count = isMobile.current ? Math.min(particleCount, 20) : particleCount
-    const particles: Particle[] = []
+    const bubbles: Bubble[] = []
     for (let i = 0; i < count; i++) {
-      particles.push({
+      bubbles.push({
         x: Math.random() * width,
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * speed,
         vy: (Math.random() - 0.5) * speed,
-        radius: Math.random() * 2 + 0.5,
+        radius: Math.random() * 20 + 8,
         color: colors[Math.floor(Math.random() * colors.length)],
+        shape: Math.random() > 0.5 ? 'circle' : 'roundedRect',
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.005,
       })
     }
-    particlesRef.current = particles
+    bubblesRef.current = bubbles
   }, [particleCount, colors, speed])
 
   useEffect(() => {
@@ -67,73 +76,57 @@ export default function ParticleField({
       if (!rect) return
       canvas.width = rect.width
       canvas.height = rect.height
-      if (particlesRef.current.length === 0) {
-        initParticles(rect.width, rect.height)
+      if (bubblesRef.current.length === 0) {
+        initBubbles(rect.width, rect.height)
       }
     }
 
     resize()
     window.addEventListener('resize', resize)
 
-    const handleMouse = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect()
-      mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
-    }
-
-    const parent = canvas.parentElement
-    parent?.addEventListener('mousemove', handleMouse)
-
     const animate = () => {
       const { width, height } = canvas
       ctx.clearRect(0, 0, width, height)
 
-      const particles = particlesRef.current
-      const mouse = mouseRef.current
+      const bubbles = bubblesRef.current
 
-      for (const p of particles) {
-        p.x += p.vx
-        p.y += p.vy
+      for (const b of bubbles) {
+        b.x += b.vx
+        b.y += b.vy
+        b.rotation += b.rotationSpeed
 
-        if (p.x < 0 || p.x > width) p.vx *= -1
-        if (p.y < 0 || p.y > height) p.vy *= -1
+        if (b.x < -b.radius) b.x = width + b.radius
+        if (b.x > width + b.radius) b.x = -b.radius
+        if (b.y < -b.radius) b.y = height + b.radius
+        if (b.y > height + b.radius) b.y = -b.radius
 
-        // Mouse parallax
-        const dx = mouse.x - p.x
-        const dy = mouse.y - p.y
-        const dist = Math.sqrt(dx * dx + dy * dy)
-        if (dist < 200) {
-          const force = (200 - dist) / 200 * 0.01
-          p.vx += dx * force
-          p.vy += dy * force
+        ctx.save()
+        ctx.translate(b.x, b.y)
+        ctx.rotate(b.rotation)
+        ctx.fillStyle = b.color
+
+        if (b.shape === 'circle') {
+          ctx.beginPath()
+          ctx.arc(0, 0, b.radius, 0, Math.PI * 2)
+          ctx.fill()
+        } else {
+          const r = b.radius * 0.3
+          const size = b.radius * 1.5
+          const half = size / 2
+          ctx.beginPath()
+          ctx.moveTo(-half + r, -half)
+          ctx.lineTo(half - r, -half)
+          ctx.quadraticCurveTo(half, -half, half, -half + r)
+          ctx.lineTo(half, half - r)
+          ctx.quadraticCurveTo(half, half, half - r, half)
+          ctx.lineTo(-half + r, half)
+          ctx.quadraticCurveTo(-half, half, -half, half - r)
+          ctx.lineTo(-half, -half + r)
+          ctx.quadraticCurveTo(-half, -half, -half + r, -half)
+          ctx.fill()
         }
 
-        // Dampen velocity
-        p.vx *= 0.99
-        p.vy *= 0.99
-
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-        ctx.fillStyle = p.color
-        ctx.fill()
-      }
-
-      // Draw connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-
-          if (dist < connectDistance) {
-            const opacity = (1 - dist / connectDistance) * 0.15
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(0, 240, 255, ${opacity})`
-            ctx.lineWidth = 0.5
-            ctx.stroke()
-          }
-        }
+        ctx.restore()
       }
 
       animRef.current = requestAnimationFrame(animate)
@@ -144,9 +137,8 @@ export default function ParticleField({
     return () => {
       cancelAnimationFrame(animRef.current)
       window.removeEventListener('resize', resize)
-      parent?.removeEventListener('mousemove', handleMouse)
     }
-  }, [initParticles, connectDistance])
+  }, [initBubbles])
 
   if (prefersReducedMotion.current) return null
 

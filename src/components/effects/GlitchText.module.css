@@ -1,6 +1,7 @@
 .glitch {
   position: relative;
   display: inline-block;
+  transition: color var(--transition-base);
 }
 
 .glitch::before,
@@ -13,36 +14,37 @@
   height: 100%;
   opacity: 0;
   pointer-events: none;
+  transition: opacity var(--transition-base);
 }
 
 .glitch::before {
   color: var(--color-primary);
   z-index: -1;
+  transform: translate(-1px, 1px);
 }
 
 .glitch::after {
   color: var(--color-secondary);
   z-index: -1;
+  transform: translate(1px, -1px);
 }
 
 .glitch:hover::before {
-  opacity: 0.8;
-  animation: glitchText 0.3s ease-in-out infinite alternate;
+  opacity: 0.4;
 }
 
 .glitch:hover::after {
-  opacity: 0.8;
-  animation: glitchText 0.3s ease-in-out infinite alternate-reverse;
+  opacity: 0.4;
 }
 
 .alwaysActive::before {
-  opacity: 0.8;
-  animation: glitchText 3s ease-in-out infinite alternate;
+  opacity: 0.3;
+  animation: colorShift 6s ease-in-out infinite;
 }
 
 .alwaysActive::after {
-  opacity: 0.8;
-  animation: glitchText 3s ease-in-out infinite alternate-reverse;
+  opacity: 0.3;
+  animation: colorShift 6s ease-in-out infinite reverse;
 }
 
 @media (prefers-reduced-motion: reduce) {
