@@ -10,11 +10,11 @@
 }
 
 .scrolled {
-  background: rgba(5, 5, 16, 0.85);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: var(--space-3) 0;
-  border-bottom: 1px solid rgba(0, 240, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .inner {
@@ -37,7 +37,7 @@
 }
 
 .logo:hover {
-  filter: brightness(1.3);
+  filter: brightness(1.1);
 }
 
 .desktopNav {

@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(5, 5, 16, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   z-index: var(--z-mobile-menu);
   opacity: 0;
   pointer-events: none;
@@ -19,12 +19,12 @@
   right: 0;
   bottom: 0;
   width: min(320px, 85vw);
-  background: var(--color-bg-deep);
+  background: #FFFFFF;
   z-index: calc(var(--z-mobile-menu) + 1);
   padding: var(--space-20) var(--space-8) var(--space-8);
   transform: translateX(100%);
   transition: transform var(--transition-slow);
-  border-left: 1px solid rgba(0, 240, 255, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -46,18 +46,18 @@
 
 .menuLink:hover {
   color: var(--color-text);
-  background: rgba(0, 240, 255, 0.05);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .menuLinkActive {
   color: var(--color-primary);
-  background: rgba(0, 240, 255, 0.08);
+  background: rgba(255, 107, 107, 0.06);
 }
 
 .menuFooter {
   margin-top: auto;
   padding-top: var(--space-6);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   color: var(--color-text-muted);
   font-size: var(--text-sm);
 }
