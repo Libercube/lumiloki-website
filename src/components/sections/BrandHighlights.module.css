@@ -8,6 +8,11 @@
   gap: var(--space-12);
   align-items: center;
   margin-bottom: var(--section-gap);
+  overflow: hidden;
+}
+
+.block > * {
+  min-width: 0;
 }
 
 .block:last-child {
@@ -103,5 +108,10 @@
 
   .imageWrapper {
     font-size: 48px;
+  }
+
+  .textContent {
+    text-align: center;
+    align-items: center;
   }
 }

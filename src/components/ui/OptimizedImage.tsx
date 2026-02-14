@@ -52,6 +52,7 @@ export default function OptimizedImage({
       style={{
         position: 'relative',
         width: width ? `${width}px` : '100%',
+        maxWidth: '100%',
         height: height ? `${height}px` : undefined,
         aspectRatio: aspectRatio,
         overflow: 'hidden',

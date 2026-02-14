@@ -51,4 +51,9 @@
   .grid {
     grid-template-columns: 1fr;
   }
+
+  .viewAll {
+    justify-content: center;
+    width: 100%;
+  }
 }
