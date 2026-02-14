@@ -35,7 +35,7 @@
   width: 100%;
   padding: var(--space-3) var(--space-4);
   background: var(--color-bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: var(--radius-md);
   color: var(--color-text);
   font-size: var(--text-base);
@@ -47,7 +47,7 @@
 .textarea:focus,
 .select:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1), var(--glow-cyan);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
 }
 
 .input::placeholder,
@@ -62,7 +62,7 @@
 
 .select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%238888AA'%3E%3Cpath d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23AEAEB2'%3E%3Cpath d='M6 8L0 0h12z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 16px center;
   cursor: pointer;
@@ -75,15 +75,15 @@
 
 .error {
   font-size: var(--text-xs);
-  color: var(--color-secondary);
+  color: var(--color-primary);
 }
 
 .success {
   padding: var(--space-4);
-  background: rgba(57, 255, 20, 0.08);
-  border: 1px solid rgba(57, 255, 20, 0.2);
+  background: rgba(78, 205, 196, 0.08);
+  border: 1px solid rgba(78, 205, 196, 0.2);
   border-radius: var(--radius-md);
-  color: var(--color-accent);
+  color: #2BA89B;
   font-size: var(--text-sm);
   text-align: center;
 }
@@ -165,15 +165,15 @@
   gap: var(--space-2);
   padding: var(--space-4);
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   transition: all var(--transition-base);
   text-decoration: none;
 }
 
 .socialItem:hover {
-  background: rgba(0, 240, 255, 0.05);
-  border-color: rgba(0, 240, 255, 0.2);
+  background: rgba(255, 107, 107, 0.04);
+  border-color: rgba(255, 107, 107, 0.15);
 }
 
 .socialItemIcon {

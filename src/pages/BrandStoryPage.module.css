@@ -9,8 +9,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: radial-gradient(ellipse at 50% 60%, rgba(178, 75, 243, 0.08) 0%, transparent 60%),
-    var(--color-bg-deep);
+  background: radial-gradient(ellipse at 50% 60%, rgba(167, 139, 250, 0.06) 0%, transparent 60%),
+    #FFFFFF;
   padding: calc(80px + var(--space-16)) var(--container-padding) var(--space-16);
   overflow: hidden;
 }
@@ -19,7 +19,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.2;
+  opacity: 0.15;
   pointer-events: none;
 }
 
