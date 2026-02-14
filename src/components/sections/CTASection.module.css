@@ -1,6 +1,6 @@
 .section {
   padding: var(--space-20) 0;
-  background: linear-gradient(135deg, #00F0FF, #B24BF3, #FF2D78, #00F0FF);
+  background: linear-gradient(135deg, #FF6B6B, #A78BFA, #4ECDC4, #60A5FA, #FFE66D);
   background-size: 300% 300%;
   animation: gradientFlow 8s ease infinite;
   text-align: center;
@@ -12,14 +12,13 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(5, 5, 16, 0.6);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .bgImage {
   position: absolute;
   inset: 0;
-  opacity: 0.25;
-  mix-blend-mode: screen;
+  opacity: 0.15;
   pointer-events: none;
 }
 
@@ -37,13 +36,13 @@
 .title {
   font-size: var(--text-4xl);
   font-weight: 900;
-  color: var(--color-text);
+  color: #FFFFFF;
   margin-bottom: var(--space-4);
 }
 
 .subtitle {
   font-size: var(--text-lg);
-  color: rgba(234, 234, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: var(--space-8);
   max-width: 500px;
   margin-left: auto;

@@ -38,7 +38,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), transparent);
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.04), transparent);
   pointer-events: none;
 }
 
