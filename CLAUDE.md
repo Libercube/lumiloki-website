@@ -108,6 +108,14 @@ src/
    - 可独立构建验证
    - 粒度适中（一个组件、一个功能点、一组相关样式等）
 5. 列出完整的小任务清单（包括涉及的文件、修改内容），**等待用户确认后再开始实现**
+6. **创建功能分支** — 用户确认后、开始实现前，必须先从最新 main 创建分支：
+   ```bash
+   git fetch origin main
+   git checkout -b <type>/<short-description> origin/main
+   ```
+   - 分支命名格式：`<type>/<short-description>`，与提交信息 type 一致
+   - 示例：`feat/liquid-glass-navbar`、`fix/mobile-menu-overflow`、`style/hero-animation`
+   - **禁止直接在 main 分支上开发和提交**
 
 ### 2. 迭代执行（对每个小任务循环）
 1. **实现** — 完成当前小任务的代码编写
