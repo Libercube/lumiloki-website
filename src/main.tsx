@@ -15,6 +15,7 @@ const BrandStoryPage = lazy(() => import('./pages/BrandStoryPage'))
 const NewsPage = lazy(() => import('./pages/NewsPage'))
 const NewsDetailPage = lazy(() => import('./pages/NewsDetailPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
+const CareersPage = lazy(() => import('./pages/CareersPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 function Loading() {
@@ -53,6 +54,7 @@ const router = createHashRouter([
       { path: 'news', element: <Suspense fallback={<Loading />}><NewsPage /></Suspense> },
       { path: 'news/:id', element: <Suspense fallback={<Loading />}><NewsDetailPage /></Suspense> },
       { path: 'contact', element: <Suspense fallback={<Loading />}><ContactPage /></Suspense> },
+      { path: 'careers', element: <Suspense fallback={<Loading />}><CareersPage /></Suspense> },
       { path: '*', element: <Suspense fallback={<Loading />}><NotFoundPage /></Suspense> },
     ],
   },

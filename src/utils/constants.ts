@@ -4,6 +4,7 @@ export const NAV_LINKS = [
   { label: '品牌故事', path: '/brand' },
   { label: '新闻动态', path: '/news' },
   { label: '联系我们', path: '/contact' },
+  { label: '招贤纳士', path: '/careers' },
 ] as const
 
 export const SOCIAL_LINKS = [
