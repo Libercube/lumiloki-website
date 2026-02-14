@@ -146,7 +146,7 @@ src/
 ## 视觉截图调试流程
 通过 Playwright（headless Chromium）对本地开发页面自动截图，实现无 GUI 环境下的视觉调试：
 1. **启动开发服务器** — `npm run dev`（确保服务器在后台运行）
-2. **截图** — `npx playwright screenshot --browser chromium http://localhost:5173/lumiloki-website/ /tmp/screenshot.png`
+2. **截图** — `mkdir -p /tmp/lumiloki-screenshots && npx playwright screenshot --browser chromium http://localhost:5173/lumiloki-website/ /tmp/lumiloki-screenshots/screenshot.png`
 3. **查看分析** — 用 Read 工具读取截图图片，分析页面渲染效果
 4. **修改验证** — 根据截图反馈修改代码，重新截图对比确认
 
@@ -177,7 +177,8 @@ src/
 - `npm run test` — 运行单元测试（Vitest，单次运行）
 - `npm run test:watch` — 运行单元测试（Vitest，监听模式）
 - `npm run preview` — 预览生产构建
-- `npx playwright screenshot --browser chromium <url> <output.png>` — 页面截图（headless）
+- `npx playwright screenshot --browser chromium <url> /tmp/lumiloki-screenshots/<name>.png` — 页面截图（headless）
+- `npm run clean` — 清理临时文件（截图、构建产物、日志）
 
 ## 部署
 - GitHub Actions 自动部署（push to main → build → deploy to GitHub Pages）
