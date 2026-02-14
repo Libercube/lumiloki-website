@@ -21,69 +21,73 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 一、MCP 配置
 
-本 Skill 依赖即梦 MCP Server 来调用 API。需在 `.claude/mcp.json` 中配置。
+本 Skill 依赖即梦 MCP Server 来调用 API。
 
-### 推荐方案 A：jimeng-ai-mcp（火山引擎官方 API）
+### 密钥配置（通过系统环境变量）
 
-```json
-{
-  "mcpServers": {
-    "jimeng": {
-      "command": "npx",
-      "args": ["-y", "jimeng-ai-mcp"],
-      "env": {
-        "JIMENG_ACCESS_KEY": "你的火山引擎AccessKey",
-        "JIMENG_SECRET_KEY": "你的火山引擎SecretKey"
-      }
-    }
-  }
-}
+**密钥不应写入项目文件**，应通过系统环境变量提供。在 Shell 配置文件（`~/.bashrc` 或 `~/.zshrc`）末尾添加：
+
+```bash
+export JIMENG_ACCESS_KEY="AKLTxxxxxxxxxxxx"
+export JIMENG_SECRET_KEY="xxxxxxxxxxxxxxxx"
 ```
+
+添加后执行 `source ~/.bashrc`（或 `source ~/.zshrc`）使其生效。
 
 **获取密钥**：访问火山引擎控制台 → 开通即梦 AI 服务 → 访问控制 → 创建 AccessKey/SecretKey
 
-**提供的工具**：
-- `generate-image`：文生图（参数：`text`, `illustration`, `color`, `ratio`）
+### MCP Server 配置
 
-### 备选方案 B：@c-rick/jimeng-mcp（更灵活的 prompt 参数）
+`.claude/mcp.json` 中只声明 MCP Server，不包含密钥（MCP 进程会自动继承系统环境变量）：
 
 ```json
 {
   "mcpServers": {
     "jimeng": {
       "command": "npx",
-      "args": ["-y", "@smithery/cli", "run", "@c-rick/jimeng-mcp"],
-      "env": {
-        "JIMENG_API_TOKEN": "即梦网站的sessionid"
-      }
+      "args": ["-y", "jimeng-ai-mcp"]
     }
   }
 }
 ```
 
-**获取 Token**：登录即梦网站 → F12 开发者工具 → Application → Cookies → 复制 `sessionid`
+### 推荐方案 A：jimeng-ai-mcp（火山引擎官方 API）
 
-**提供的工具**：
-- `generateImage`：文生图（参数：`prompt`, `negative_prompt`, `width`, `height`, `model`, `sample_strength`）
+- **环境变量**: `JIMENG_ACCESS_KEY`, `JIMENG_SECRET_KEY`
+- **提供的工具**: `generate-image`（参数：`text`, `illustration`, `color`, `ratio`）
+
+### 备选方案 B：@c-rick/jimeng-mcp（更灵活的 prompt 参数）
+
+- **环境变量**: `JIMENG_API_TOKEN`（即梦网站的 sessionid）
+- **获取方式**: 登录即梦网站 → F12 → Application → Cookies → 复制 `sessionid`
+- **提供的工具**: `generateImage`（参数：`prompt`, `negative_prompt`, `width`, `height`, `model`, `sample_strength`）
+
+```json
+{
+  "mcpServers": {
+    "jimeng": {
+      "command": "npx",
+      "args": ["-y", "@smithery/cli", "run", "@c-rick/jimeng-mcp"]
+    }
+  }
+}
+```
 
 ### 备选方案 C：Volcengine-Image-MCP（豆包 Seedream 模型）
+
+- **环境变量**: `VOLCENGINE_API_KEY`
+- **提供的工具**: `generate_image`（参数：`prompt`, `size`, `guidance_scale`, `seed`, `watermark`）
 
 ```json
 {
   "mcpServers": {
     "jimeng": {
       "command": "node",
-      "args": ["/path/to/Volcengine-Image-MCP/build/index.js"],
-      "env": {
-        "VOLCENGINE_API_KEY": "你的火山引擎API Key"
-      }
+      "args": ["/path/to/Volcengine-Image-MCP/build/index.js"]
     }
   }
 }
 ```
-
-**提供的工具**：
-- `generate_image`：文生图（参数：`prompt`, `size`, `guidance_scale`, `seed`, `watermark`）
 
 ---
 

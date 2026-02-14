@@ -2,11 +2,7 @@
   "mcpServers": {
     "jimeng": {
       "command": "npx",
-      "args": ["-y", "jimeng-ai-mcp"],
-      "env": {
-        "JIMENG_ACCESS_KEY": "",
-        "JIMENG_SECRET_KEY": ""
-      }
+      "args": ["-y", "jimeng-ai-mcp"]
     }
   }
 }
