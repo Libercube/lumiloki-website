@@ -1,1 +1,85 @@
-/* Variables - will be populated in Task 2 */
+:root {
+  /* === Colors === */
+  --color-primary: #00F0FF;
+  --color-secondary: #FF2D78;
+  --color-accent: #39FF14;
+  --color-purple: #B24BF3;
+
+  --color-bg-deep: #050510;
+  --color-bg: #0A0A1A;
+  --color-bg-card: #0F0F2A;
+  --color-bg-card-hover: #141432;
+
+  --color-text: #EAEAFF;
+  --color-text-secondary: #8888AA;
+  --color-text-muted: #555577;
+
+  /* === Gradients === */
+  --gradient-primary: linear-gradient(135deg, #00F0FF, #B24BF3);
+  --gradient-hot: linear-gradient(135deg, #FF2D78, #B24BF3);
+  --gradient-neon: linear-gradient(135deg, #39FF14, #00F0FF);
+  --gradient-full: linear-gradient(135deg, #00F0FF, #B24BF3, #FF2D78);
+
+  /* === Glow Shadows === */
+  --glow-cyan: 0 0 10px rgba(0, 240, 255, 0.3), 0 0 30px rgba(0, 240, 255, 0.15);
+  --glow-pink: 0 0 10px rgba(255, 45, 120, 0.3), 0 0 30px rgba(255, 45, 120, 0.15);
+  --glow-purple: 0 0 10px rgba(178, 75, 243, 0.3), 0 0 30px rgba(178, 75, 243, 0.15);
+  --glow-green: 0 0 10px rgba(57, 255, 20, 0.3), 0 0 30px rgba(57, 255, 20, 0.15);
+
+  /* === Typography === */
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Noto Sans SC', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3rem;
+  --text-hero: 4.5rem;
+
+  /* === Spacing === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  --section-gap: var(--space-32);
+  --container-max: 1200px;
+  --container-padding: var(--space-6);
+
+  /* === Border Radius === */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* === Transitions === */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* === Z-index === */
+  --z-navbar: 100;
+  --z-mobile-menu: 200;
+  --z-modal: 300;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --section-gap: var(--space-16);
+    --container-padding: var(--space-4);
+  }
+}
