@@ -1,6 +1,5 @@
 import { motion } from 'motion/react'
 import SectionHeading from '../ui/SectionHeading'
-import GlowCard from '../ui/GlowCard'
 import OptimizedImage from '../ui/OptimizedImage'
 import { features } from '../../data/features'
 import styles from './FeaturesSection.module.css'
@@ -42,25 +41,21 @@ export default function FeaturesSection() {
         >
           {features.map((feature) => (
             <motion.div key={feature.title} variants={itemVariants}>
-              <GlowCard className={styles.featureCard} enableTilt>
-                <div className={styles.iconWrapper}>
-                  <div className={styles.iconRing} />
-                  {feature.image ? (
-                    <OptimizedImage
-                      src={feature.image}
-                      alt={feature.title}
-                      className={styles.featureImage}
-                      fallbackEmoji={feature.icon}
-                      width={40}
-                      height={40}
-                    />
-                  ) : (
-                    <span className={styles.icon}>{feature.icon}</span>
-                  )}
+              <div className={styles.featureCard}>
+                <div className={styles.imageWrapper}>
+                  <OptimizedImage
+                    src={feature.bgImage}
+                    alt={feature.title}
+                    aspectRatio="4/3"
+                    objectFit="cover"
+                  />
                 </div>
-                <h3 className={styles.featureTitle}>{feature.title}</h3>
-                <p className={styles.featureDesc}>{feature.description}</p>
-              </GlowCard>
+                <div className={styles.overlay} />
+                <div className={styles.textContent}>
+                  <h3 className={styles.featureTitle}>{feature.title}</h3>
+                  <p className={styles.featureDesc}>{feature.description}</p>
+                </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>
