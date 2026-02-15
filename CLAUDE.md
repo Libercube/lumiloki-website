@@ -123,8 +123,20 @@ src/
    - `npm run lint` — 代码规范检查
    - `npm run test` — 单元测试（Vitest）
    - `npm run build` — TypeScript 类型检查 + 生产构建
-3. **自查** — 运行 `git diff` 审查改动，确认无调试代码（console.log）、注释掉的代码、无关改动
-4. **处理结果**：
+3. **视觉验证（自动触发）** — 当本次小任务修改的文件**满足以下任一条件**时，自动执行截图检查：
+   - 修改了 `*.module.css` 样式文件
+   - 修改了 `src/components/` 或 `src/pages/` 下的 `.tsx` 文件
+   - 修改了全局样式文件（`variables.css`、`global.css`、`animations.css`）
+   - 新增或替换了 `src/assets/` 下的图片资源
+   - **判断方法**：通过 `git diff --name-only` 检查已修改文件列表，匹配上述模式
+   - **截图流程**：
+     1. 确保开发服务器已启动（`npm run dev`）
+     2. 对受影响的页面截图（根据修改的组件/页面判断对应路由）
+     3. 用 Read 工具查看截图，确认视觉效果符合预期
+     4. 如发现视觉问题，修复后重新截图验证
+   - **不触发截图的改动**：纯逻辑修改、数据文件、工具函数、Hooks、类型定义、测试文件、配置文件等
+4. **自查** — 运行 `git diff` 审查改动，确认无调试代码（console.log）、注释掉的代码、无关改动
+5. **处理结果**：
    - **验证通过** → git commit 当前小任务，进入下一个小任务
    - **验证失败** → 进入修复流程（见下方）
 
@@ -152,7 +164,11 @@ src/
   5. 确认最近一次构建状态（通过/失败），如不确定则重新运行验证
 
 ## 视觉截图调试流程
-通过 Playwright（headless Chromium）对本地开发页面自动截图，实现无 GUI 环境下的视觉调试：
+通过 Playwright（headless Chromium）对本地开发页面自动截图，实现无 GUI 环境下的视觉调试。
+
+> **注意**：视觉截图已集成到迭代执行流程（第 2 节第 3 步），当修改涉及 UI 相关文件时会自动触发。以下为截图的具体操作方法和参数说明，也可在需要时手动执行。
+
+### 截图操作步骤
 1. **启动开发服务器** — `npm run dev`（确保服务器在后台运行）
 2. **截图** — `mkdir -p /tmp/lumiloki-screenshots && npx playwright screenshot --browser chromium http://localhost:5173/lumiloki-website/ /tmp/lumiloki-screenshots/screenshot.png`
 3. **查看分析** — 用 Read 工具读取截图图片，分析页面渲染效果
@@ -164,11 +180,11 @@ src/
 - 移动端模拟：`--viewport-size=375,812`
 - 子路由页面：调整 URL hash，如 `http://localhost:5173/lumiloki-website/#/products`
 
-### 使用时机
-- 样式调整后需确认视觉效果
-- 响应式布局验证（桌面端 / 移动端）
-- 新组件开发完成后的渲染检查
-- 排查布局异常或样式错乱问题
+### 手动截图的使用时机
+以下场景即使未触发自动截图，也建议手动执行：
+- 响应式布局需要多尺寸验证（桌面端 + 移动端）
+- 排查用户反馈的布局异常或样式错乱
+- 需要截取特定交互状态（如悬停、展开菜单等）
 
 ## 即梦 AI 图片生成流程
 当需要为页面生成图片素材时，通过 MCP 调用即梦 API（`jimeng-mcp-v4@4.0.0`）：
