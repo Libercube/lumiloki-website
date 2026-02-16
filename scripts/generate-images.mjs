@@ -110,8 +110,8 @@ const PRODUCT_SUFFIX = '，干净纯白背景，正方形构图，产品居中�
 
 const PRODUCTS = [
   { name: 'lumi-pro', prompt: '高端3x3智能魔方，白色磨砂外壳，每个小方块面板内嵌LED灯发出蓝紫色柔光，魔方45度角悬浮展示三面，可见清晰的3x3九宫格分割线' + PRODUCT_SUFFIX },
-  { name: 'lumi-lite', prompt: '轻巧3x3智能魔方，白色光滑外壳，部分小方块面板亮起薄荷绿色LED柔光，整体造型圆润轻巧' + PRODUCT_SUFFIX },
-  { name: 'lumi-speed', prompt: '竞速3x3智能魔方，深灰色磨砂金属质感外壳，可见精密3x3旋转结构和磁力定位槽，边缘有橙色LED指示灯条亮起，运动竞技感设计' + PRODUCT_SUFFIX },
+  { name: 'lumi-lite', prompt: '一个标准的3x3魔方(Rubik\'s Cube)造型的智能魔方，白色光滑外壳，每面可见3x3共9个小方块，部分小方块面板亮起薄荷绿色LED柔光，魔方45度角悬浮展示三面，整体造型圆润轻巧' + PRODUCT_SUFFIX },
+  { name: 'lumi-speed', prompt: '一个标准的3x3魔方(Rubik\'s Cube)造型的竞速智能魔方，深灰色磨砂金属质感外壳，每面可见3x3共9个小方块和旋转缝隙，方块之间的缝隙处有橙色LED灯条亮起，魔方45度角悬浮展示三面，运动竞技感设计' + PRODUCT_SUFFIX },
   { name: 'lumi-mini', prompt: '迷你50mm超小3x3智能魔方，白色外壳配紫色LED发光面板，精致袖珍可爱造型，附带小钥匙扣环' + PRODUCT_SUFFIX },
   { name: 'lumi-x', prompt: '三角金字塔形Pyraminx智能魔方，磨砂黑色骨架搭配半透明三角面板，内嵌多色彩虹RGB LED灯光，造型独特前卫' + PRODUCT_SUFFIX },
   { name: 'lumi-neo', prompt: '潮流联名3x3智能魔方，表面有青色品红色黄色街头涂鸦彩绘，边缘缝隙透出霓虹LED灯光，潮酷街头风格' + PRODUCT_SUFFIX },
